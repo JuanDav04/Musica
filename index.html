@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolf Music - Tu Música, Tu Estilo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <h1 class="logo">🐺 Wolf Music</h1>
+        <nav class="main-nav">
+            <a href="#" id="link-inicio" class="nav-link active"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#" id="link-libreria" class="nav-link"><i class="fas fa-book"></i> Mi Librería</a>
+        </nav>
+        <div class="playlists-nav">
+            <h3>Playlists</h3>
+            <div id="playlist-container">
+                </div>
+        </div>
+    </div>
+
+    <main class="content">
+        <header class="top-bar">
+            <input type="text" placeholder="Buscar artistas, canciones o álbumes..." class="search-input">
+            <div class="user-profile">
+                <span>Usuario Lobo</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <section id="view-inicio" class="main-view active">
+            <h2>Éxitos de Hoy</h2>
+            <div class="card-grid">
+                <div class="music-card" id="card-index-0">
+                    <img src="https://i1.sndcdn.com/artworks-V675wfpUwJpF-0-t500x500.jpg" alt="Portada Arcangel BZRP" class="card-cover">
+                    <p class="card-title">BZRP Music Sessions #54</p>
+                    <p class="card-subtitle">ARCANGEL & BZRP</p>
+                </div>
+                
+                <div class="music-card" id="card-index-4">
+                    <img src="https://i.scdn.co/image/ab67616d0000b273ddd3154c58e15a8bdb63bbcc" alt="Portada Tusa" class="card-cover">
+                    <p class="card-title">Tusa</p>
+                    <p class="card-subtitle">KAROL G & Nicki Minaj</p>
+                </div>
+                
+                <div class="music-card" id="card-index-9">
+                    <img src="https://cdn-images.dzcdn.net/images/cover/48bc4e33a21c660886d70160c41e53aa/1900x1900-000000-80-0-0.jpg" alt="Portada Vete" class="card-cover">
+                    <p class="card-title">Vete</p>
+                    <p class="card-subtitle">Bad Bunny</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-libreria" class="main-view hidden">
+            <h2>Mi Librería 📚</h2>
+            <div id="library-list-container" class="library-content">
+                <p>Aquí se mostrarán las canciones que has marcado como "Me Gusta".</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="playback-bar">
+        <div class="song-info">
+            <img id="current-cover-small" src="" alt="Portada actual" class="small-cover"> 
+
+            <div class="text-info">
+                <p id="song-title">Nombre de la Canción</p>
+                <p id="song-artist">Nombre del Artista</p>
+            </div>
+            <button id="like-btn" class="like-btn"><i class="far fa-heart"></i><i class="fas fa-heart"></i></button>
+        </div>
+        
+        <div class="player-controls">
+            <div class="controls">
+                <button id="shuffle-btn"><i class="fas fa-random"></i></button>
+                <button id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                <button id="play-pause-btn" class="main-play"><i class="fas fa-play"></i></button>
+                <button id="next-btn"><i class="fas fa-step-forward"></i></button>
+                <button id="repeat-btn"><i class="fas fa-redo-alt"></i></button>
+            </div>
+            <div class="progress-container">
+                <span id="time-current-display" class="time-current">0:00</span>
+                <div class="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+                <span id="time-duration-display" class="time-duration">0:00</span>
+            </div>
+        </div>
+
+        <div class="volume-controls">
+            <i class="fas fa-volume-up" id="volume-icon"></i> 
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
+        
+        <audio id="audio-source" src=""></audio>
+    </footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    
+    // Tu configuración real de Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyDQAAkjNVKfEHAO0OVpcVsqCKGUmjskAC0",
+        authDomain: "wolfmusic-72cb4.firebaseapp.com",
+        projectId: "wolfmusic-72cb4",
+        storageBucket: "wolfmusic-72cb4.firebasestorage.app",
+        messagingSenderId: "731815188060",
+        appId: "1:731815188060:web:091a2f08a4f5481c103899",
+        measurementId: "G-YFD1E2DEBJ"
+    };
+
+    window.firebaseApp = initializeApp(firebaseConfig);
+    console.log("Firebase App inicializada con éxito.");
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

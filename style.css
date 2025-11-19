@@ -1,0 +1,366 @@
+/* Variables CSS para un tema oscuro y profesional */
+:root {
+    --color-primary-cyan: #00FFFF;
+    --color-background-dark: #121212; /* Fondo principal */
+    --color-sidebar-dark: #040404; /* Fondo más oscuro para sidebar */
+    --color-accent-dark: #282828; /* Gris oscuro para cards/barras */
+    --color-text-light: #B3B3B3; /* Gris claro para texto normal */
+    --color-text-active: #FFFFFF; /* Blanco para texto activo */
+}
+
+/* Estilos Globales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente moderna */
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    margin: 0;
+    padding: 0;
+    display: grid;
+    /* Define 3 áreas: sidebar, content, y la barra de reproducción (playback-bar) en la fila inferior */
+    grid-template-areas: 
+        "sidebar content"
+        "playback-bar playback-bar";
+    grid-template-columns: 200px 1fr; /* 200px para la barra lateral */
+    grid-template-rows: 1fr 90px; /* 90px para la barra de reproducción */
+    height: 100vh;
+    overflow: hidden; /* Evita barras de desplazamiento innecesarias en el layout principal */
+}
+
+/* 1. BARRA LATERAL (SIDEBAR) */
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--color-sidebar-dark);
+    padding: 20px 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.logo {
+    color: var(--color-primary-cyan);
+    font-size: 1.5em;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.main-nav, .playlists-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-nav .nav-link {
+    font-weight: bold;
+}
+
+.nav-link {
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 10px 10px;
+    margin: 2px 0;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link i {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-text-active);
+    background-color: var(--color-accent-dark);
+}
+
+.playlists-nav h3 {
+    color: var(--color-text-light);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    margin-top: 15px;
+    padding-left: 10px;
+}
+
+/* 2. CONTENIDO PRINCIPAL (CONTENT) */
+.content {
+    grid-area: content;
+    overflow-y: auto; /* Permite desplazamiento solo en el contenido principal */
+    padding: 0 30px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    position: sticky; /* Fija la barra superior al hacer scroll */
+    top: 0;
+    background-color: var(--color-background-dark);
+    z-index: 10;
+}
+
+.search-input {
+    background-color: var(--color-accent-dark);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    color: var(--color-text-light);
+    width: 300px;
+    font-size: 0.9em;
+}
+.search-input::placeholder {
+    color: #777;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.user-profile i {
+    font-size: 1.8em;
+    color: var(--color-primary-cyan);
+}
+
+.main-view h2 {
+    color: var(--color-text-active);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.music-card {
+    background-color: var(--color-accent-dark);
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.music-card:hover {
+    background-color: #3b3b3b;
+}
+
+/* ESTILOS PARA LAS IMÁGENES DE PORTADA */
+.card-cover, .small-cover {
+    object-fit: cover; /* Asegura que la imagen no se estire y llene el contenedor */
+    display: block;
+}
+
+.card-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Hace que sea un cuadrado */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card-title {
+    color: var(--color-text-active);
+    font-weight: bold;
+    margin: 5px 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-subtitle {
+    font-size: 0.8em;
+    color: var(--color-text-light);
+}
+
+
+/* 3. BARRA DE REPRODUCCIÓN (PLAYBACK BAR) */
+.playback-bar {
+    grid-area: playback-bar;
+    background-color: var(--color-sidebar-dark);
+    border-top: 1px solid #080808;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    width: 30%; /* Aumentamos el ancho para el botón de Me Gusta */
+}
+
+/* Estilos para la imagen pequeña en la barra de reproducción */
+.small-cover { 
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.song-info .text-info p {
+    margin: 2px 0;
+    font-size: 0.9em;
+}
+
+.song-info .text-info #song-title {
+    color: var(--color-text-active);
+    font-weight: bold;
+}
+
+/* Controles del Reproductor (Sin cambios) */
+.player-controls {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    margin: 0 8px;
+    font-size: 1.2em;
+    transition: color 0.2s;
+}
+
+.controls button:hover {
+    color: var(--color-text-active);
+}
+
+.controls .main-play {
+    font-size: 1.8em;
+    color: var(--color-text-active);
+}
+
+.controls .main-play:hover {
+    color: var(--color-primary-cyan); /* El botón principal se resalta en cian */
+}
+
+.controls button.active {
+    color: var(--color-primary-cyan); 
+}
+
+/* Barra de Progreso (Sin cambios) */
+.progress-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    gap: 10px;
+}
+
+.time-current, .time-duration {
+    font-size: 0.75em;
+    color: var(--color-text-light);
+}
+
+.progress-bar-container {
+    height: 4px;
+    background-color: #555;
+    flex-grow: 1;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%; /* Iniciamos en 0% */
+    background-color: var(--color-primary-cyan);
+    border-radius: 2px;
+}
+
+/* Controles de Volumen (Sin cambios) */
+.volume-controls {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: flex-end;
+}
+
+.volume-controls i {
+    font-size: 1.1em;
+    margin-right: 10px;
+    color: var(--color-text-light);
+    cursor: pointer;
+}
+
+#volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 4px;
+    background: #555;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-text-active);
+    cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-text-active);
+    cursor: pointer;
+    border: none;
+}
+
+/* --- ESTILOS PARA EL BOTÓN ME GUSTA (Sin cambios) --- */
+.like-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-left: 20px;
+    transition: color 0.2s, transform 0.2s;
+    opacity: 0.7;
+}
+
+.like-btn:hover {
+    color: var(--color-text-active);
+    opacity: 1;
+}
+
+.like-btn i.fas {
+    display: none; 
+}
+.like-btn i.far {
+    display: inline;
+}
+
+.like-btn.liked {
+    color: #ff004c; /* Rojo de "Me Gusta" */
+    opacity: 1;
+}
+
+.like-btn.liked i.far {
+    display: none; 
+}
+.like-btn.liked i.fas {
+    display: inline;
+}
+
+/* --- REGLA PARA CAMBIO DE VISTAS (Router simple) --- */
+.hidden {
+    display: none !important;
+}
